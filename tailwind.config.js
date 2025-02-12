@@ -1,11 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
+    './index.html',
   ],
   prefix: "",
   theme: {
@@ -21,14 +22,21 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: {
+          light: '#F8FAFC',
+          dark: '#0F172A',
+        },
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          lightest: '#87CEEB', // Light blue
+          light: '#20B2AA',    // Turquoise
+          DEFAULT: '#003366',  // Dark blue
+          yellow: '#FFD700',   // Yellow
+          orange: '#FF8C00',   // Dark orange
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: '#E63B0C', // Orange
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -40,7 +48,7 @@ module.exports = {
           foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
+          DEFAULT: '#FF0DDF', // Hot magenta
           foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
@@ -51,6 +59,27 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        neutral: {
+          silver: '#CECCCC',
+          black: '#000000',
+          white: '#FFFFFF',
+        },
+        brand: {
+          orange: '#E63B0C',  // Cinnabar
+          magenta: '#FF0DDF', // Hot magenta
+        },
+        earth: {
+          black: '#000000',
+          darkblue: '#2F4F4F',
+          beige: '#F5F5DC',
+          tan: '#D2B48C',
+          brown: '#696969',
+        },
+        'gradient-primary': {
+          start: '#7DD3FC',
+          middle: '#0EA5E9',
+          end: '#0C4A6E',
+        }
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -71,7 +100,26 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      gradientColorStops: {
+        'primary-gradient': ['#7DD3FC', '#0EA5E9', '#0C4A6E'],
+      },
+      backgroundImage: {
+        'primary-gradient': 'linear-gradient(to right, var(--tw-gradient-stops))',
+        'hero-gradient': 'linear-gradient(to bottom, #F8FAFC, #FFFFFF)',
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            pre: {
+              whiteSpace: 'pre-line',
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require('@tailwindcss/typography'),
+  ],
 }

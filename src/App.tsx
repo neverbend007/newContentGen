@@ -1,19 +1,14 @@
-import { Suspense } from "react";
-import { useRoutes, Routes, Route } from "react-router-dom";
-import Home from "./components/home";
-import routes from "tempo-routes";
+import { Provider } from 'react-redux'
+import { RouterProvider } from 'react-router-dom'
+import { store } from './store'
+import { router } from './router'
 
 function App() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
-      </>
-    </Suspense>
-  );
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  )
 }
 
-export default App;
+export default App
